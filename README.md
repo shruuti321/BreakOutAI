@@ -1,4 +1,6 @@
 # Data Query Dashboard
+## Project Video
+[Watch the video](https://drive.google.com/file/d/12__LLMAdtEc7bFWDvEa8OXXDDXn0w5Dv/view?usp=sharing)
 
 ## Project Description
 

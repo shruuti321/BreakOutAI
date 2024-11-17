@@ -30,3 +30,49 @@ Clone the repository and navigate into the project directory:
 ```bash
 git clone <repository_url>
 cd <repository_name>
+
+### **Step 2: Install Dependencies**
+
+For the Backend, navigate to the app directory and install the dependencies:
+
+```bash
+cd app
+pip install -r requirements.txt
+
+For the Dashboard, navigate to the dashboard directory and install the dependencies:
+
+```bash
+cd ../dashboard
+pip install -r requirements.txt
+
+### Step 3: Configure API Keys and Environment Variables
+SERPAPI Key:
+
+Obtain an API key from SerpAPI and add it to the SERP_API_KEY variable in app/app.py.
+Groq API Key:
+
+Obtain an API key from Groq and set it in your environment variables:
+
+```bash
+export GROQ_API_KEY='your_groq_api_key'
+Alternatively, you can hardcode the key into app/app.py under the os.environ["GROQ_API_KEY"] variable.
+
+### Step 4: Run the Backend Flask Server
+Navigate to the app directory and start the Flask server:
+
+```bash
+cd app
+python app.py
+
+The server will be available at:
+http://127.0.0.1:5000
+
+### Step 5: Launch the Streamlit Dashboard
+In a separate terminal, navigate to the dashboard directory and run the Streamlit app:
+
+```bash
+cd dashboard
+streamlit run dashboard.py
+
+The dashboard will be available at:
+http://localhost:8501

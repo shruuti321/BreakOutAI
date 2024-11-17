@@ -56,39 +56,6 @@ def get_google_sheet():
         return jsonify({'error': str(e)}), 500
 
 
-# @app.route('/perform_search', methods=['POST'])
-# def perform_search():
-#     data = request.get_json()
-#     queries = data.get('queries')  # List of custom queries to search for
-#
-#     if not queries:
-#         return jsonify({'error': 'No queries provided'}), 400
-#
-#     results = {}
-#
-#     for query in queries:
-#         search_results = []
-#         try:
-#             # Set up SerpAPI search parameters
-#             params = {
-#                 "q": query,
-#                 "api_key": SERP_API_KEY,
-#                 "num": 5  # Limit to 5 results to reduce cost/usage
-#             }
-#             search = GoogleSearch(params)
-#             search_results = search.get_dict().get("organic_results", [])
-#
-#             # Format results as URL and snippet text
-#             formatted_results = [
-#                 {"title": result.get("title"), "url": result.get("link"), "snippet": result.get("snippet")}
-#                 for result in search_results
-#             ]
-#
-#             results[query] = formatted_results  # Store results by query
-#         except Exception as e:
-#             results[query] = {"error": str(e)}
-#
-#     return jsonify(results)
 
 @app.route('/perform_search', methods=['POST'])
 def perform_search():
@@ -124,39 +91,7 @@ def perform_search():
     return jsonify(results)
 
 
-# @app.route('/process_with_groq', methods=['POST'])
-# def process_with_groq():
-#     data = request.get_json()
-#     entity_data = data.get('entity_data')  # List of entities with search results
-#     prompt_template = data.get('prompt_template')
-#
-#     # Initialize Groq client
-#     client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-#
-#     results = []
-#     for entity in entity_data:
-#         prompt = prompt_template.format(company=entity["company"])
-#         search_results = entity.get("search_results")  # Retrieve search results
-#
-#         # Combine prompt with actual search results
-#         full_prompt = f"{prompt}\n\nSearch results:\n{search_results}"
-#         messages = [{"role": "user", "content": full_prompt}]
-#
-#         try:
-#             # Send request to Groq API with search results included
-#             chat_completion = client.chat.completions.create(
-#                 messages=messages,
-#                 model="llama3-8b-8192"  # Use the appropriate model as needed
-#             )
-#             # Extract response from Groq API
-#             extracted_info = chat_completion.choices[0].message.content.strip()
-#             results.append({"entity": entity, "extracted_info": extracted_info})
-#
-#         except Exception as e:
-#             print(f"Error processing {entity['company']}: {e}")
-#             results.append({"entity": entity, "extracted_info": "Error"})
-#
-#     return jsonify({"results": results})
+
 
 @app.route('/process_with_groq', methods=['POST'])
 def process_with_groq():

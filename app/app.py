@@ -5,11 +5,11 @@ from io import StringIO  # <-- Import StringIO from io
 from serpapi import GoogleSearch
 import os
 from groq import Groq
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = ""
 
 app = Flask(__name__)
-SERP_API_KEY = "9f1f978a8e010cf7a9dce69074fdd66f90dd052347a14e26158efa00c8c431da"
-GROQ_API_KEY = "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"
+SERP_API_KEY = ""
+
 # Basic route to test if Flask is working
 @app.route('/')
 def home():

@@ -54,14 +54,14 @@ if csv_file:
         st.error(result['error'])
     else:
         st.success("CSV file uploaded successfully!")
-        st.write("Available Columns:", result['columns'])
+        # st.write("Available Columns:", result['columns'])
 
         # Select the main column from the available columns
         selected_column = st.selectbox("Select the main column", result['columns'])
 
         # Display a preview of the data
         st.write("Data Preview:")
-        st.write(result['preview'])
+        # st.write(result['preview'])
 
         # --- Dynamic Query Input Section ---
         st.subheader("Define Custom Query Template")
@@ -97,7 +97,7 @@ if sheet_id:
         st.error(result['error'])
     else:
         st.success("Google Sheet linked successfully!")
-        st.write("Available Columns:", result['columns'])
+        # st.write("Available Columns:", result['columns'])
 
         # Select the main column from the available columns
         selected_column = st.selectbox("Select the main column", result['columns'], key="sheet")
@@ -131,19 +131,19 @@ if sheet_id:
 # --- Perform Web Search for Queries ---
 if st.button("Perform Web Search for Queries") and 'generated_queries' in locals():
     # Call the backend search endpoint with generated queries
-    st.write("Generated Queries:", generated_queries)
+    # st.write("Generated Queries:", generated_queries)
     search_results = requests.post(
         f"{BACKEND_URL}/perform_search",
         json={'queries': generated_queries}
     ).json()
-    st.write("Search Results from Backend:", search_results)
+    # st.write("Search Results from Backend:", search_results)
     # Store the search results to use later for Groq processing
     st.session_state.search_results = search_results  # Store search results in session state
 
     # Display search results
     st.subheader("Search Results")
     for query, results in search_results.items():
-        st.write(f"Results for: {query}")
+        # st.write(f"Results for: {query}")
         if "error" in results:
             st.error(f"Error: {results['error']}")
         else:
@@ -189,7 +189,7 @@ if st.button("Process Data with Groq") and 'search_results' in st.session_state:
         st.write(f"Emails extracted for {company_name}:", company_emails)
 
     # Log the entity_data before sending it to Groq
-    st.write("Entity Data being sent to Groq:", entity_data)
+    # st.write("Entity Data being sent to Groq:", entity_data)
 
     # Prompt template for Groq
     prompt_template = st.text_input("Enter your prompt template:",

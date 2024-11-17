@@ -5,10 +5,12 @@ from io import StringIO  # <-- Import StringIO from io
 from serpapi import GoogleSearch
 import os
 from groq import Groq
+SERP_API_KEY = ""
+
 os.environ["GROQ_API_KEY"] = ""
 
 app = Flask(__name__)
-SERP_API_KEY = ""
+
 
 # Basic route to test if Flask is working
 @app.route('/')
@@ -87,7 +89,7 @@ def perform_search():
             results[query] = {"error": str(e)}
 
     # Debugging log
-    print("Search Results:", results)
+    # print("Search Results:", results)
     return jsonify(results)
 
 
